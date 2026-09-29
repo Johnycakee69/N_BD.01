@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Pheak Sophatnita ♥</title>
+<style>
+  :root{
+    --bg-deep:#1a0b2e; --bg-plum:#4b1e8a;
+    --ink:#101018; --cream:#f2ead0; --pink:#f2a7c3;
+    --gold:#ffe66d; --lilac:#c8b6ff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:Georgia,'Noto Serif','Liberation Serif','Times New Roman',serif;
+    background:var(--bg-deep); color:#fff; overflow-x:hidden;
+  }
+  canvas#confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+
+  /* ---------- HERO : cake animation (no letter) ---------- */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(ellipse at 50% 30%,#4b1e8a 0%,#1a0b2e 70%);
+    text-align:center;padding:60px 20px 80px;position:relative;
+  }
+  .hero h1{
+    font-weight:500;letter-spacing:8px;font-size:clamp(2rem,6vw,3.6rem);
+    color:var(--cream);text-shadow:0 4px 30px rgba(0,0,0,.5);
+  }
+  .hero h1 em{color:var(--gold);font-style:italic;font-weight:400}
+  .hero p.sub{color:var(--lilac);font-style:italic;letter-spacing:4px;margin-top:0;font-size:1.05rem}
+  .cake{margin:20px auto 10px;position:relative;width:300px;height:320px;animation:bob 3.2s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .glow{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:340px;height:340px;
+    background:radial-gradient(circle,rgba(255,202,58,.28) 0%,rgba(255,107,107,.12) 40%,transparent 70%);
+    animation:glowPulse 2.2s ease-in-out infinite;pointer-events:none}
+  @keyframes glowPulse{0%,100%{opacity:.7;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}}
+  .plate{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:270px;height:22px;
+    background:linear-gradient(#e8e8f2,#b9b9d6);border-radius:50%;box-shadow:0 12px 30px rgba(0,0,0,.5);
+    animation:stackIn .6s .1s backwards}
+  .tier{position:absolute;left:50%;transform:translateX(-50%);border-radius:12px;
+    box-shadow:inset 0 -14px 0 rgba(0,0,0,.08);animation:stackIn .7s backwards}
+  .tier.t3{bottom:18px;width:230px;height:80px;background:linear-gradient(#ff9ebb,#f0618f);animation-delay:.25s}
+  .tier.t2{bottom:96px;width:180px;height:70px;background:linear-gradient(#ffe6ef,#ffb3cb);animation-delay:.55s}
+  .tier.t1{bottom:164px;width:140px;height:60px;background:linear-gradient(#fff6e8,#ffd9a8);animation-delay:.85s}
+  @keyframes stackIn{from{opacity:0;transform:translate(-50%,-60px) scale(.9)}60%{opacity:1;transform:translate(-50%,6px) scale(1.02)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+  .icing{position:absolute;top:0;left:0;right:0;height:18px;border-radius:12px 12px 0 0;
+    background:rgba(255,255,255,.85)}
+  .icing::after{content:'';position:absolute;top:14px;left:8px;right:8px;height:16px;
+    background:radial-gradient(circle at 10px -4px,transparent 12px,rgba(255,255,255,.85) 13px);
+    background-size:28px 18px;background-repeat:repeat-x}
+  .dots{position:absolute;inset:24px 0 0 0;
+    background-image:radial-gradient(#fff 2.5px,transparent 3px),radial-gradient(#ffd166 2.5px,transparent 3px);
+    background-size:34px 26px;background-position:0 0,17px 13px;opacity:.8}
+  .candles{position:absolute;bottom:222px;left:50%;transform:translateX(-50%);display:flex;gap:10px;
+    animation:dropIn .7s 1.1s backwards}
+  @keyframes dropIn{from{opacity:0;transform:translate(-50%,-50px)}to{opacity:1;transform:translate(-50%,0)}}
+  .candle{width:14px;height:58px;border-radius:8px 8px 4px 4px;position:relative;
+    background:linear-gradient(90deg,rgba(0,0,0,.28),var(--c,#ff6b6b) 28%,rgba(255,255,255,.75) 46%,var(--c,#ff6b6b) 62%,rgba(0,0,0,.28));
+    box-shadow:inset -2px 0 3px rgba(0,0,0,.25),0 2px 6px rgba(0,0,0,.35)}
+  .candle::before{content:'';position:absolute;top:0;left:1px;right:1px;height:8px;border-radius:50%;
+    background:radial-gradient(ellipse at 50% 40%,rgba(255,255,255,.9),var(--c,#ff6b6b) 75%)}
+  .wick{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:2px;height:9px;background:#333}
+  .flame{position:absolute;top:-30px;left:50%;transform:translateX(-50%);width:18px;height:26px;
+    background:radial-gradient(circle at 50% 75%,#fff7ad 0 25%,#ffb703 45%,#fb5607 75%,transparent 76%);
+    border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+    transform-origin:50% 100%;animation:flick .35s ease-in-out infinite alternate;
+    filter:drop-shadow(0 0 12px #ffca3a)}
+  .candle:nth-child(2) .flame{animation-delay:.12s}
+  .candle:nth-child(3) .flame{animation-delay:.22s}
+  .candle:nth-child(4) .flame{animation-delay:.07s}
+  .candle:nth-child(5) .flame{animation-delay:.18s}
+  .candle:nth-child(6) .flame{animation-delay:.28s}
+  .candle:nth-child(7) .flame{animation-delay:.05s}
+  @keyframes flick{from{transform:translateX(-50%) scale(1) rotate(-3deg)}to{transform:translateX(-50%) scale(1.12) rotate(3deg)}}
+  .scroll-cue{margin-top:44px;color:#fff;opacity:.75;letter-spacing:3px;font-size:.85rem;font-style:italic;
+    animation:cue 1.6s ease-in-out infinite}
+  @keyframes cue{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(10px);opacity:1}}
+
+  /* ---------- JK SECTION ---------- */
+  .jk{background:linear-gradient(180deg,#1a0b2e,#2a1245);text-align:center;padding:90px 20px}
+  .jk h2{font-weight:500;letter-spacing:6px;color:var(--cream);font-size:clamp(1.5rem,4vw,2.3rem)}
+  .jk h2 em{color:var(--gold);font-style:italic}
+  .jk p{color:var(--lilac);font-style:italic;letter-spacing:2px;margin:12px 0 30px}
+  .jk img{width:min(420px,88vw);border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 0 6px rgba(255,230,109,.15)}
+
+  /* ---------- GTA-STYLE : one frame, all pics ---------- */
+  .story{background:var(--ink);padding:90px 6vw}
+  .story .kicker{color:var(--cream);letter-spacing:5px;font-size:.8rem;opacity:.7;margin-bottom:40px;text-align:center}
+  .block{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;
+    max-width:1150px;margin:0 auto}
+  .txt h3{color:var(--pink);font-size:clamp(1.4rem,2.8vw,2rem);line-height:1.3;font-weight:600;margin-bottom:12px}
+  .txt .note{margin-bottom:38px}
+  .txt .note:last-child{margin-bottom:0}
+  .txt .note p{color:#f4f1ea;line-height:1.8;font-size:1rem;white-space:pre-line}
+  .txt .no{color:var(--cream);opacity:.4;letter-spacing:4px;font-size:.8rem;display:block;margin-bottom:10px}
+  /* single collage frame holding all 3 photos */
+  /* GTA mosaic : smaller pics, overlapping like inspirate */
+  .photos{max-width:480px;margin-left:auto;display:grid;grid-template-columns:1.15fr 1fr;
+    gap:16px;align-items:start}
+  .photo-card{background:#1c1c28;border:1px solid rgba(242,234,208,.15);border-radius:8px;
+    padding:10px;box-shadow:0 20px 55px rgba(0,0,0,.6);transition:transform .35s ease}
+  .photo-card:hover{transform:translateY(-5px) !important;z-index:3}
+  .photo-card:nth-child(1){grid-column:1/-1;border:3px solid var(--cream);transform:rotate(.4deg)}
+  .photo-card:nth-child(2){transform:rotate(-.8deg);margin-top:-26px;position:relative;z-index:2}
+  .photo-card:nth-child(3){transform:rotate(.9deg);margin-top:26px}
+  .photo-card figure{margin:0;overflow:hidden;border-radius:5px;position:relative;background:#000}
+  .photo-card:nth-child(1) img{aspect-ratio:1/1}
+  .photo-card:nth-child(2) img{aspect-ratio:3/4}
+  .photo-card:nth-child(3) img{aspect-ratio:1/1}
+  .photo-card img{width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .5s ease;cursor:pointer}
+  .photo-card figure:hover img{transform:scale(1.04)}
+  .photo-card figcaption{padding:8px 4px 2px;font-size:.72rem;letter-spacing:2px;
+    font-style:italic;color:#fff;opacity:.65;text-align:center}
+  /* lightbox */
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;
+    justify-content:center;z-index:100;padding:20px}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:92vw;max-height:88vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.8)}
+  .reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  .finale{background:radial-gradient(ellipse at 50% 20%,#4b1e8a,#1a0b2e 75%);
+    text-align:center;padding:110px 20px 70px}
+  .finale h2{letter-spacing:7px;font-weight:500;color:var(--cream);font-size:clamp(1.8rem,5vw,3rem)}
+  .finale h2 em{color:var(--gold);font-style:italic}
+  .finale p{color:var(--lilac);font-style:italic;letter-spacing:3px;margin:14px 0 8px}
+  footer{padding:26px;text-align:center;color:#fff;opacity:.45;font-size:.8rem;letter-spacing:2px;font-style:italic}
+
+  @media(max-width:860px){
+    .block{grid-template-columns:1fr;gap:30px}
+  }
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+
+<!-- 1 · HERO : cake animation, no letter, no title -->
+<header class="hero">
+  <p class="sub">to Pheak Sophatnita</p>
+
+  <div class="cake" aria-label="Animated birthday cake">
+    <div class="glow"></div>
+    <div class="candles">
+      <div class="candle" style="--c:#ff6b6b"><div class="wick"></div><div class="flame"></div></div>
+      <div class="candle" style="--c:#4cc9f0"><div class="wick"></div><div class="flame"></div></div>
+      <div class="candle" style="--c:#c8b6ff"><div class="wick"></div><div class="flame"></div></div>
+      <div class="candle" style="--c:#ffe66d"><div class="wick"></div><div class="flame"></div></div>
+      <div class="candle" style="--c:#90be6d"><div class="wick"></div><div class="flame"></div></div>
+      <div class="candle" style="--c:#f72585"><div class="wick"></div><div class="flame"></div></div>
+      <div class="candle" style="--c:#ffca3a"><div class="wick"></div><div class="flame"></div></div>
+    </div>
+    <div class="tier t1"><div class="icing"></div><div class="dots"></div></div>
+    <div class="tier t2"><div class="icing"></div><div class="dots"></div></div>
+    <div class="tier t3"><div class="icing"></div><div class="dots"></div></div>
+    <div class="plate"></div>
+  </div>
+
+  <div class="scroll-cue">scroll down ↓</div>
+</header>
+
+<!-- 2 · JUNGKOOK -->
+<section class="jk reveal">
+  <h2>A SPECIAL <em>DELIVERY</em></h2>
+  <p>he insisted on holding the sign himself</p>
+  <img src="Jungkook/jungkook-birthday.gif" alt="Animated Jungkook holding a Happy Birthday sign">
+</section>
+
+<!-- 3 · HER STORY : one frame, all pics + all cele words -->
+<section class="story">
+  <div class="kicker">H E R &nbsp; S T O R Y</div>
+
+  <div class="block reveal">
+    <!-- LEFT : his words from cele/word -->
+    <div class="txt">
+      <div class="note">
+        <span class="no">for you</span>
+        <h3>Happy Birthday, Pheak Sophatnita.</h3>
+        <p>Thank you for showing me what real beauty looks like, and I'm so proud to know that my guess was true about you getting almost straight "A".</p>
+        <p style="margin-top:14px">I love you so much and I hope you can receive all this love till we marry :3</p>
+        <p style="margin-top:14px">Wishing you the best and may you get what you always want — and don't drink too much coffee, your idol wouldn't like it!!</p>
+      </div>
+    </div>
+
+    <!-- RIGHT : 3 separate photo cards, spaced apart -->
+    <div class="photos">
+      <div class="photo-card">
+        <figure>
+          <img src="Pic_BD/2.png" alt="Her photo 1" data-full="Pic_BD/2.png">
+        </figure>
+        <figcaption>fighting days, easy exam</figcaption>
+      </div>
+      <div class="photo-card">
+        <figure>
+          <img src="Pic_BD/4.jpeg" alt="Her photo 2" data-full="Pic_BD/4.jpeg">
+        </figure>
+        <figcaption>golden hour</figcaption>
+      </div>
+      <div class="photo-card">
+        <figure>
+          <img src="Pic_BD/3.jpeg" alt="Her photo 3" data-full="Pic_BD/3.jpeg">
+        </figure>
+        <figcaption>my favorite person</figcaption>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox"><img src="" alt="enlarged photo"></div>
+
+<section class="finale reveal">
+  <h2>HAPPY <em>BIRTHDAY</em></h2>
+  <p class="fname" style="color:var(--cream);font-size:1.4rem;letter-spacing:5px">Pheak Sophatnita</p>
+  <p>today is all yours — make a wish</p>
+</section>
+<footer>made with love · just for her</footer>
+
+<script>
+// confetti
+const c=document.getElementById('confetti'),x=c.getContext('2d');
+let W,H;function rs(){W=c.width=innerWidth;H=c.height=innerHeight}rs();addEventListener('resize',rs);
+const cols=['#ffe66d','#ff6b6b','#c8b6ff','#90be6d','#ffca3a','#f72585','#4cc9f0'];
+let p=Array.from({length:110},()=>({x:Math.random()*innerWidth,y:Math.random()*-innerHeight,w:6+Math.random()*8,h:8+Math.random()*10,c:cols[Math.random()*cols.length|0],v:1.5+Math.random()*2.5,r:Math.random()*Math.PI,vr:-.1+Math.random()*.2}));
+(function anim(){x.clearRect(0,0,W,H);p.forEach(o=>{x.save();x.translate(o.x,o.y);x.rotate(o.r);x.fillStyle=o.c;x.fillRect(-o.w/2,-o.h/2,o.w,o.h);x.restore();o.y+=o.v;o.r+=o.vr;if(o.y>H){o.y=-20;o.x=Math.random()*W}});requestAnimationFrame(anim)})();
+// scroll reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// frame tilt + click-to-zoom lightbox
+const lb=document.getElementById('lightbox'),lbImg=lb.querySelector('img');
+document.querySelectorAll('.photos img').forEach(im=>{
+  im.addEventListener('click',()=>{lbImg.src=im.dataset.full||im.src;lb.classList.add('open')});
+});
+lb.addEventListener('click',()=>lb.classList.remove('open'));
+addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
+</script>
+</body>
+</html>
